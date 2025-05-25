@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Auth0 Token</title>
+    <script>
+        function getToken() {
+            const domain = document.getElementById('domain').value;
+            const clientId = document.getElementById('clientId').value;
+            const clientSecret = document.getElementById('clientSecret').value;
+            const audience = document.getElementById('audience').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Display request details for debugging
+            const requestBody = {
+                grant_type: 'password',
+                username: username,
+                password: password,
+                audience: audience,
+                client_id: clientId,
+                client_secret: clientSecret,
+                scope: 'openid profile email'
+                connection: 'Username-Password-Authentication'
+            };
+            
+            document.getElementById('debug').innerHTML = 
+                'Request to: ' + `https://${domain}/oauth/token` + 
+                '<br>Body: ' + JSON.stringify(requestBody, null, 2);
+
+            fetch(`https://${domain}/oauth/token`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(response => {
+                // Log the full response
+                document.getElementById('status').innerHTML = 'Response status: ' + response.status;
+                return response.json().then(data => {
+                    return {
+                        status: response.status,
+                        ok: response.ok,
+                        data: data
+                    };
+                });
+            })
+            .then(result => {
+                if (result.ok) {
+                    document.getElementById('token').value = result.data.access_token;
+                } else {
+                    document.getElementById('error').innerHTML = 
+                        'Error: ' + JSON.stringify(result.data, null, 2);
+                }
+            })
+            .catch(error => {
+                document.getElementById('error').innerHTML = 'Fetch Error: ' + error;
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Get Auth0 Token</h1>
+    <form>
+        <div>
+            <label for="domain">Auth0 Domain:</label>
+            <input type="text" id="domain" value="your-domain.auth0.com" style="width: 300px;">
+        </div>
+        <div>
+            <label for="clientId">Client ID:</label>
+            <input type="text" id="clientId" style="width: 300px;">
+        </div>
+        <div>
+            <label for="clientSecret">Client Secret:</label>
+            <input type="text" id="clientSecret" style="width: 300px;">
+        </div>
+        <div>
+            <label for="audience">API Audience:</label>
+            <input type="text" id="audience" value="casting-agency-api" style="width: 300px;">
+        </div>
+        <div>
+            <label for="username">Username (email):</label>
+            <input type="text" id="username" style="width: 300px;">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" style="width: 300px;">
+        </div>
+        <button type="button" onclick="getToken()">Get Token</button>
+    </form>
+    <div>
+        <label for="token">Token:</label>
+        <textarea id="token" rows="5" cols="70"></textarea>
+    </div>
+    <div>
+        <h3>Debug Information:</h3>
+        <div id="debug" style="background-color: #f0f0f0; padding: 10px;"></div>
+        <h3>Response Status:</h3>
+        <div id="status" style="background-color: #f0f0f0; padding: 10px;"></div>
+        <h3>Error Details:</h3>
+        <div id="error" style="background-color: #ffeeee; padding: 10px;"></div>
+    </div>
+</body>
+</html>
