@@ -1,22 +1,17 @@
-
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 import os
+import click
+from flask import Flask
+from flask.cli import with_appcontext
+from flask_migrate import Migrate, upgrade
+from datetime import date
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+from app import app
+from app.models import db, Actor, Movie
 
-db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-@manager.command
-def db_upgrade():
-    """Apply database migrations"""
-    upgrade()
-
-@manager.command
+@app.cli.command()
+@with_appcontext
 def seed():
     """Seeds the database with initial data"""
     # Create actors
@@ -26,9 +21,9 @@ def seed():
     actor4 = Actor(name='Viola Davis', age=58, gender='Female')
     
     # Create movies
-    movie1 = Movie(title='The Color Purple', release_date='1985-12-20')
-    movie2 = Movie(title='Forrest Gump', release_date='1994-07-06')
-    movie3 = Movie(title='The Devil Wears Prada', release_date='2006-06-30')
+    movie1 = Movie(title='The Color Purple', release_date=date(1985, 12, 20))
+    movie2 = Movie(title='Forrest Gump', release_date=date(1994, 7, 6))
+    movie3 = Movie(title='The Devil Wears Prada', release_date=date(2006, 6, 30))
     
     # Add to database
     db.session.add_all([actor1, actor2, actor3, actor4, movie1, movie2, movie3])
@@ -42,7 +37,8 @@ def seed():
     
     print('Database seeded successfully!')
 
-@manager.command
+@app.cli.command()
+@with_appcontext
 def drop_and_create_all():
     """Drops and creates fresh database tables"""
     from app.models import db_drop_and_create_all
@@ -50,4 +46,4 @@ def drop_and_create_all():
     print('Database reset complete!')
 
 if __name__ == '__main__':
-    manager.run()
+    app.run()

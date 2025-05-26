@@ -2,7 +2,7 @@ Casting Agency API
 Introduction
 The Casting Agency API models a company that is responsible for creating movies and managing and assigning actors to those movies. This API allows casting assistants, casting directors, and executive producers to manage the database of movies and actors based on their assigned permissions.
 Live URL
-https://your-app-name.herokuapp.com/
+https://casting-agency-final.herokuapp.com/
 Motivation
 This project is the capstone project for the Udacity Full Stack Web Developer Nanodegree Program. It demonstrates the culmination of the skills learned throughout the program, including:
 
