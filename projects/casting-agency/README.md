@@ -206,6 +206,75 @@ The test suite includes 26 comprehensive tests covering:
 - **RBAC testing** with at least 2 tests per role
 - **Authentication testing** for various scenarios
 
+### Test Results
+
+Latest test run results:
+```
+test_create_actor_error_400 (tests.test_actors.ActorEndpointTestCase.test_create_actor_error_400)
+Test error when creating actor with missing data ... ok
+test_create_actor_error_403 (tests.test_actors.ActorEndpointTestCase.test_create_actor_error_403)
+Test error when creating actor with insufficient permissions ... ok
+test_create_actor_success (tests.test_actors.ActorEndpointTestCase.test_create_actor_success)
+Test successful actor creation ... ok
+test_get_actors_error_401 (tests.test_actors.ActorEndpointTestCase.test_get_actors_error_401)
+Test error when retrieving actors without authentication ... ok
+test_get_actors_success (tests.test_actors.ActorEndpointTestCase.test_get_actors_success)
+Test successful retrieval of actors ... ok
+test_update_actor_success (tests.test_actors.ActorEndpointTestCase.test_update_actor_success)
+Test successful actor update ... ok
+test_assistant_can_view_actors (tests.test_auth.RBACTestCase.test_assistant_can_view_actors)
+Test Casting Assistant can view actors ... ok
+test_assistant_can_view_movies (tests.test_auth.RBACTestCase.test_assistant_can_view_movies)
+Test Casting Assistant can view movies ... ok
+test_assistant_cannot_add_actor (tests.test_auth.RBACTestCase.test_assistant_cannot_add_actor)
+Test Casting Assistant cannot add actor ... ok
+test_assistant_cannot_delete_movie (tests.test_auth.RBACTestCase.test_assistant_cannot_delete_movie)
+Test Casting Assistant cannot delete movie ... ok
+test_director_can_add_actor (tests.test_auth.RBACTestCase.test_director_can_add_actor)
+Test Casting Director can add actor ... ok
+test_director_can_delete_actor (tests.test_auth.RBACTestCase.test_director_can_delete_actor)
+Test Casting Director can delete actor ... ok
+test_director_can_update_movie (tests.test_auth.RBACTestCase.test_director_can_update_movie)
+Test Casting Director can update movie ... ok
+test_director_cannot_add_movie (tests.test_auth.RBACTestCase.test_director_cannot_add_movie)
+Test Casting Director cannot add movie ... ok
+test_producer_can_add_movie (tests.test_auth.RBACTestCase.test_producer_can_add_movie)
+Test Executive Producer can add movie ... ok
+test_producer_can_delete_movie (tests.test_auth.RBACTestCase.test_producer_can_delete_movie)
+Test Executive Producer can delete movie ... ok
+test_create_movie_error_400 (tests.test_movies.MovieEndpointTestCase.test_create_movie_error_400)
+Test error when creating movie with missing data ... ok
+test_create_movie_error_403 (tests.test_movies.MovieEndpointTestCase.test_create_movie_error_403)
+Test error when creating movie with insufficient permissions ... ok
+test_create_movie_success (tests.test_movies.MovieEndpointTestCase.test_create_movie_success)
+Test successful movie creation ... ok
+test_delete_movie_error_403 (tests.test_movies.MovieEndpointTestCase.test_delete_movie_error_403)
+Test error when deleting movie with insufficient permissions ... ok
+test_delete_movie_error_404 (tests.test_movies.MovieEndpointTestCase.test_delete_movie_error_404)
+Test error when deleting non-existent movie ... ok
+test_delete_movie_success (tests.test_movies.MovieEndpointTestCase.test_delete_movie_success)
+Test successful movie deletion ... ok
+test_get_movies_error_401 (tests.test_movies.MovieEndpointTestCase.test_get_movies_error_401)
+Test error when retrieving movies without authentication ... ok
+test_get_movies_success (tests.test_movies.MovieEndpointTestCase.test_get_movies_success)
+Test successful retrieval of movies ... ok
+test_update_movie_error_404 (tests.test_movies.MovieEndpointTestCase.test_update_movie_error_404)
+Test error when updating non-existent movie ... ok
+test_update_movie_success (tests.test_movies.MovieEndpointTestCase.test_update_movie_success)
+Test successful movie update ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 3.405s
+
+OK
+```
+
+**✅ All 26 tests pass successfully**, demonstrating:
+- Complete endpoint functionality
+- Proper error handling
+- Role-based access control enforcement
+- Authentication and authorization security
+
 ### API Testing Examples
 
 #### Test Root Endpoint (No Authentication)
