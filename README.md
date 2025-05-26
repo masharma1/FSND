@@ -2,7 +2,7 @@ Casting Agency API
 Introduction
 The Casting Agency API models a company that is responsible for creating movies and managing and assigning actors to those movies. This API allows casting assistants, casting directors, and executive producers to manage the database of movies and actors based on their assigned permissions.
 Live URL
-https://casting-agency-final.herokuapp.com/
+https://casting-agency-final-bef3776c086d.herokuapp.com/movies
 Motivation
 This project is the capstone project for the Udacity Full Stack Web Developer Nanodegree Program. It demonstrates the culmination of the skills learned throughout the program, including:
 
@@ -168,7 +168,7 @@ Requires get:actors permission
 
 
 Sample request:
-bashCopycurl -X GET https://your-app-name.herokuapp.com/actors \
+bashCopycurl -X GET https://casting-agency-final-bef3776c086d.herokuapp.com/movies \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 
 Sample response:
@@ -209,7 +209,7 @@ jsonCopy{
 }
 
 Sample request:
-bashCopycurl -X POST https://your-app-name.herokuapp.com/actors \
+bashCopycurl -X POST https://casting-agency-final-bef3776c086d.herokuapp.com/actors \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -d '{"name": "Tom Holland", "age": 27, "gender": "Male"}'
@@ -244,7 +244,7 @@ jsonCopy{
 }
 
 Sample request:
-bashCopycurl -X PATCH https://your-app-name.herokuapp.com/actors/5 \
+bashCopycurl -X PATCH https://casting-agency-final-bef3776c086d.herokuapp.com/actors \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -d '{"age": 28}'
@@ -272,7 +272,7 @@ Requires delete:actors permission
 
 
 Sample request:
-bashCopycurl -X DELETE https://your-app-name.herokuapp.com/actors/5 \
+bashCopycurl -X DELETE https://casting-agency-final-bef3776c086d.herokuapp.com/actors/5 \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 
 Sample response:
@@ -291,7 +291,7 @@ Requires get:movies permission
 
 
 Sample request:
-bashCopycurl -X GET https://your-app-name.herokuapp.com/movies \
+bashCopycurl -X GET https://casting-agency-final-bef3776c086d.herokuapp.com/movies \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 
 Sample response:
@@ -330,7 +330,7 @@ jsonCopy{
 }
 
 Sample request:
-bashCopycurl -X PATCH https://your-app-name.herokuapp.com/movies/4 \
+bashCopycurl -X PATCH https://casting-agency-final-bef3776c086d.herokuapp.com/movies/4 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -d '{"title": "Spider-Man: Far From Home", "release_date": "2019-07-02"}'
@@ -357,7 +357,7 @@ Requires delete:movies permission
 
 
 Sample request:
-bashCopycurl -X DELETE https://your-app-name.herokuapp.com/movies/4 \
+bashCopycurl -X DELETE https://casting-agency-final-bef3776c086d.herokuapp.com/movies/4 \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 
 Sample response:
@@ -400,9 +400,9 @@ bashCopyheroku addons:create heroku-postgresql:hobby-dev --app your-app-name
 
 Set environment variables:
 
-bashCopyheroku config:set AUTH0_DOMAIN='your-auth0-domain.auth0.com' --app your-app-name
-heroku config:set API_AUDIENCE='casting-agency-api' --app your-app-name
-heroku config:set CLIENT_ID='your-client-id' --app your-app-name
+bashCopyheroku config:set AUTH0_DOMAIN='dev-vaa4tqxczeu26tio.us.auth0.com' --app casting-agency-final
+heroku config:set API_AUDIENCE='casting-agency-api' --app casting-agency-final
+heroku config:set CLIENT_ID='JYmMAdwbqYZZWfe6bh7eKtPFqqefm5YL' --app casting-agency-final
 
 Push to Heroku:
 
@@ -410,11 +410,11 @@ bashCopygit push heroku master
 
 Run migrations:
 
-bashCopyheroku run python manage.py db upgrade --app your-app-name
+bashCopyheroku run python manage.py db upgrade --app casting-agency-final
 
 Seed the database (optional):
 
-bashCopyheroku run python manage.py seed --app your-app-name
+bashCopyheroku run python manage.py seed --app casting-agency-final
 Authors
 
 Your Name
@@ -429,7 +429,7 @@ Auth0 for providing authentication services-Man: No Way Home",
 Copy
 
 Sample request:
-bashCopycurl -X POST https://your-app-name.herokuapp.com/movies \
+bashCopycurl -X POST https://casting-agency-final-bef3776c086d.herokuapp.com/movies \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -d '{"title": "Spider-Man: No Way Home", "release_date": "2021-12-17", "actors": [5]}'
